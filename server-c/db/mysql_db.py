@@ -11,7 +11,7 @@ TABLE_NAME = os.getenv('TABLE_NAME','records_table')
 
 
 class MySQLManager():
-    def __init__(self,host:str,user:str,password:str,database_name:str):
+    def __init__(self,host:str,user:str,password:str,port:int):
 
         self.pool = mysql.connector.pooling.MySQLConnectionPool(
             pool_name='mypool',
