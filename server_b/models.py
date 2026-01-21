@@ -2,7 +2,7 @@ from pydantic import BaseModel, ValidationError,Field
 import datetime
 
 class LocationData(BaseModel):
-    timestamp: datetime.datetime
+    timestamp: str
     location_name: str
     country: str
     latitude: float
@@ -11,3 +11,5 @@ class LocationData(BaseModel):
     wind_speed: float
     humidity: int
 
+
+    
