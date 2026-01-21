@@ -4,7 +4,7 @@ import requests
 import os
 from shared.schemas import LstLocationForDB,LocationForDB
 
-URL = os.getenv("SERVER_C_URL", "http://localhost:8000")
+URL = os.getenv("SERVER_C_URL", "http://localhost:8002/records")
 
 
 def convert_to_df(data: list[dict]):
