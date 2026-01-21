@@ -14,6 +14,13 @@ class LocationData(BaseModel):
     temperature: float
     wind_speed: float
     humidity: int
-
+    
 class LstLocation(BaseModel):
     location_info : list[LocationData] 
+
+class LocationForDB(LocationData):
+    temperature_category : str
+    wind_category : str
+
+class LstLocationForDB(BaseModel):
+    locations_info : list[LocationForDB]
