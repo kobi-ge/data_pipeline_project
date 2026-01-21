@@ -1,4 +1,5 @@
 import mysql.connector
+from mysql.connector.abstracts import MySQLConnectionAbstract, MySQLCursorAbstract
 import os 
 
 DATABASE_HOST = os.getenv("DATABASE_HOST","host")
