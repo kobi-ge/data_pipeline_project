@@ -2,9 +2,9 @@ import mysql.connector
 from mysql.connector.abstracts import MySQLConnectionAbstract, MySQLCursorAbstract
 import os 
 
-DATABASE_HOST = os.getenv("DATABASE_HOST","host")
-DATABASE_USER = os.getenv("DATABASE_USER","user")
-DATABASE_PASSWORD = os.getenv("DATABASE_HOST","pass")
+DATABASE_HOST = os.getenv("DATABASE_HOST","localhost")
+DATABASE_USER = os.getenv("DATABASE_USER","root")
+DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD","pass")
 DATABASE_NAME = os.getenv("DATABASE_NAME","sql_db")
 
 
