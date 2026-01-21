@@ -1,5 +1,5 @@
 from fastapi import APIRouter,Depends
-from db.mysql_db import db_manager
+from ..db.mysql_db import db_manager
 from mysql.connector.abstracts import MySQLConnectionAbstract # הייבוא לטובת הטיפוס
 import os 
 
