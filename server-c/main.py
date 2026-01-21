@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from routes.crud_routes import router as crud_router
-from routes.query_routes import router as query_router
-from db.mysql_db import db_manager
+from .routes.crud_routes import router as crud_router
+from .routes.query_routes import router as query_router
+from .db.mysql_db import db_manager
 import uvicorn
 
 
