@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import requests
 import os
+from shared.schemas import LstLocationForDB,LocationForDB
 
 URL = os.getenv("SERVER_C_URL", "http://localhost:8000")
 
