@@ -19,7 +19,7 @@ class MySQLManager():
             host=host,
             user=user,
             password=password,
-            database=database_name
+            port=port
         )
     def get_db(self):
         connection = self.pool.get_connection()
@@ -59,4 +59,4 @@ class MySQLManager():
             conn.close()
                 
 
-db_manager = MySQLManager(host=DATABASE_HOST,user=DATABASE_USER,password=DATABASE_PASSWORD,database_name=DATABASE_NAME)
+db_manager = MySQLManager(host=DATABASE_HOST,user=DATABASE_USER,password=DATABASE_PASSWORD,port=DATABASE_PORT)
