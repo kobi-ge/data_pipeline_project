@@ -5,8 +5,8 @@ from shared.schemas import LstLocationForDB, LocationForDB
 import os 
 
 
-TABLE_NAME = os.getenv("TABLE_NAME", "records")
-
+TABLE_NAME = os.getenv("TABLE_NAME", "records_table")
+DATABASE_NAME = os.getenv("DATABASE_NAME","sql_db")
 router = APIRouter()
 
 @router.post('/records')
