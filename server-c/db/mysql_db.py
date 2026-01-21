@@ -6,6 +6,8 @@ DATABASE_HOST = os.getenv("DATABASE_HOST","localhost")
 DATABASE_USER = os.getenv("DATABASE_USER","root")
 DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD","pass")
 DATABASE_NAME = os.getenv("DATABASE_NAME","sql_db")
+DATABASE_PORT = int(os.getenv("DATABASE_PORT","3306"))
+TABLE_NAME = os.getenv('TABLE_NAME','records_table')
 
 
 class MySQLManager():
