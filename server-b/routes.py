@@ -1,6 +1,6 @@
-from fastapi import FastAPI, APIRouter
-import models, utils
-
+from fastapi import APIRouter
+from .utils import *
+from shared.schemas import LstLocation
 router = APIRouter()
     
 @router.post("/clean")
