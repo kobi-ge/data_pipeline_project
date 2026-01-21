@@ -8,7 +8,7 @@ import requests
 
 
 SERVER_B_NAME = os.getenv('SERVER_B_NAME','localhost')
-SERVER_B_PORT = os.getenv('SERVER_B_PORT','8000')
+SERVER_B_PORT = os.getenv('SERVER_B_PORT','8001')
 SERVER_B_TIMEOUT = int(os.getenv('SERVER_B_TIMEOUT','5'))
 
 DESTANATION_URL = f"http://{SERVER_B_NAME}:{SERVER_B_PORT}"
