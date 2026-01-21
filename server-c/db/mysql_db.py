@@ -47,7 +47,7 @@ class MySQLManager():
             cursor : MySQLCursorAbstract = conn.cursor()
             cursor.execute(f"USE {DATABASE_NAME}")
             query: str = f"""
-                CREATE TABLE IF NOT EXISTS {table_name} (
+                CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     timestamp DATETIME,
                     location_name VARCHAR(100),
