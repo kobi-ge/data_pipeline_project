@@ -24,9 +24,15 @@ def df_to_json(df: pd.DataFrame):
     json_df = df.to_json(orient="index")
     return json_df
 
-def send_server_c(json_data):
-    res = requests.post(url=URL, data=json_data)
-    return res.json
+def df_to_dict(df:pd.DataFrame):
+    data_dicts = df.to_dict(orient='records')
+    locations = LstLocationForDB(locations_info=data_dicts)
+    return locations
+
+def send_server_c(data:LstLocationForDB):
+    payload = data.model_dump(mode='json')
+    res = requests.post(url=URL, json=payload)
+    return res.json()
 
 
 
