@@ -17,7 +17,7 @@ def add_columns(df):
     wind_bins = [0, 10, np.inf]
     wind_lab = ["calm", "windy"]
     df['temperature_category'] = pd.cut(df['temperature'], bins=temper_bins, labels=temper_lab)
-    df['wind_status'] = pd.cut(df['wind_speed'], bins=wind_bins, labels=wind_lab)
+    df['wind_category'] = pd.cut(df['wind_speed'], bins=wind_bins, labels=wind_lab)
     return df
 
 def df_to_json(df: pd.DataFrame):
