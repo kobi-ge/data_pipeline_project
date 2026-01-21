@@ -39,7 +39,7 @@ class MySQLManager():
             cursor.close()
     def init_schema(self):
         
-        table_name = os.getenv('TABLE_NAME','records_table')
+        
         
         conn : MySQLConnectionAbstract = self.pool.get_connection()
         
