@@ -27,8 +27,7 @@ def get_locations(location: LocationModel):
         server_b_result = {"error": f"Server B returned an error: {err.response.status_code}"}
     except Exception as exc:
         server_b_result = {"error": f"Unexpected error: {str(exc)}"}
-    if not server_b_result.get('error'):
-        server_b_result = 'done'
+
     return {'massage':server_b_result}
 
 def connecation_to_server_b(data:LstLocation):
