@@ -6,7 +6,9 @@ COPY server-a/requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt 
 
-COPY server-a/app/  ./app/
+COPY shared /app/shared
+
+COPY server-a/app  ./app
 
 EXPOSE 8000
 
