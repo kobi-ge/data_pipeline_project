@@ -45,6 +45,7 @@ class MySQLManager():
         
         try:
             cursor : MySQLCursorAbstract = conn.cursor()
+            cursor.execute(f"USE {DATABASE_NAME}")
             query: str = f"""
                 CREATE TABLE IF NOT EXISTS {table_name} (
                     id INT AUTO_INCREMENT PRIMARY KEY,
