@@ -11,5 +11,3 @@ class LocationData(BaseModel):
     wind_speed: float
     humidity: int
 
-
-    
