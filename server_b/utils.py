@@ -2,7 +2,10 @@ import models
 import datetime
 import pandas as pd
 import numpy as np
-import json
+import requests
+import os
+
+URL = os.getenv("SERVER_C_URL", "http://localhost:8000")
 
 
 def convert_to_df(data: list[dict]):
@@ -21,4 +24,10 @@ def add_columns(df):
 def df_to_json(df: pd.DataFrame):
     json_df = df.to_json(orient="index")
     return json_df
+
+def send_server_c(json_data):
+    res = requests.post(url=URL, data=json_data)
+    return res.json
+
+
 

@@ -9,5 +9,6 @@ def clean_send(data: list[models.LocationData]):
     df = utils.convert_to_df(data_as_dicts)
     complete_df = utils.add_columns(df)
     json_df = utils.df_to_json(complete_df)
-    return json_df
+    response = utils.send_server_c(json_df)
+    return response
 
