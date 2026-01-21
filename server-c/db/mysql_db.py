@@ -27,7 +27,16 @@ class MySQLManager():
             yield connection
         finally:
             connection.close()
-    
+    def init_database(self):
+        conn : MySQLConnectionAbstract= self.pool.get_connection()
+        try:
+            cursor = conn.cursor()
+            cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DATABASE_NAME}")
+            
+            conn.commit()
+            cursor.close()
+        finally:
+            cursor.close()
     def init_schema(self):
         
         table_name = os.getenv('TABLE_NAME','records_table')
