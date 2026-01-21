@@ -1,6 +1,7 @@
 from fastapi import APIRouter,Depends
 from ..db.mysql_db import db_manager
 from mysql.connector.abstracts import MySQLConnectionAbstract # הייבוא לטובת הטיפוס
+from shared.schemas import LstLocationForDB, LocationForDB
 import os 
 
 
