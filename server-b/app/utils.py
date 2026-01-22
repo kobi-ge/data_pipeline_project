@@ -4,7 +4,7 @@ import requests
 import os
 from shared.schemas import LstLocationForDB,LocationForDB
 
-URL = os.getenv("SERVER_C_URL", "http://localhost:8002/records")
+SERVER_C_URL = os.getenv("SERVER_C_URL", "http://localhost:8002/records")
 
 
 def convert_to_df(data: list[dict]):
@@ -31,7 +31,7 @@ def df_to_dict(df:pd.DataFrame):
 
 def send_server_c(data:LstLocationForDB):
     payload = data.model_dump(mode='json')
-    res = requests.post(url=URL, json=payload)
+    res = requests.post(url=SERVER_C_URL, json=payload)
     return res.json()
 
 
