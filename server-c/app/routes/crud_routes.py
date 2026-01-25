@@ -7,6 +7,7 @@ import os
 
 TABLE_NAME = os.getenv("TABLE_NAME", "records_table")
 DATABASE_NAME = os.getenv("DATABASE_NAME","sql_db")
+
 router = APIRouter()
 
 @router.post('/records')
@@ -17,6 +18,7 @@ def save_records(payload: LstLocationForDB, database : MySQLConnectionAbstract =
         tuple(item.model_dump().values()) 
         for item in data
     ]
+    cursor = None
     try:
         cursor = database.cursor(dictionary=True)
         columns = ','.join(fields)
@@ -41,4 +43,5 @@ def save_records(payload: LstLocationForDB, database : MySQLConnectionAbstract =
             "message": f"Failed to save records: {str(e)}"
         }
     finally:
-        cursor.close()
+        if cursor:
+            cursor.close()
