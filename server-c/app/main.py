@@ -12,11 +12,13 @@ app = FastAPI(title="server-c")
 def startup_event():
     print("Connecting to Database...")
     try:
+        db_manager.initialize_pool()
         db_manager.init_database()
         db_manager.init_schema()
+        print("Database connected!. all work!")
+
     except Exception as e:
-        print(f'errorfrom init table {e}')
-    print("Database connected!")
+        print(f'error from init table {e}')
 
 
 app.include_router(crud_router)

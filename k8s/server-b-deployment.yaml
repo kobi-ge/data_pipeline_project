@@ -1,0 +1,30 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata: 
+  name: server-b-deploy 
+spec:
+  selector:
+    matchLabels:
+      app: server-b-api
+  template:
+    metadata:
+      labels:
+        app: server-b-api 
+    spec:
+      containers:
+        - name: server-b-con
+          image: moshe5434/pipeline-project-server-b:v1 
+          ports:
+          - containerPort: 8000 
+          env:
+            - name: SERVER_C_NAME
+              value: "service-c" 
+            - name: SERVER_C_PORT
+              value: "8000"
+            - name: SERVER_C_TIMEOUT
+              value: "5"
+      initContainers:
+      - name: wait-for-server-c
+        image: busybox:1.28
+        command: ['sh', '-c', "until nc -zv service-c 8000; do echo waiting for server-c...; sleep 2; done"]
+

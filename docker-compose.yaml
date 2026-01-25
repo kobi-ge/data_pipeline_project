@@ -39,7 +39,9 @@ services:
     ports:
       - "8001:8000"
     environment:
-      - SERVER_C_URL=http://server-c:8000/records
+      - SERVER_C_NAME=server-c
+      - SERVER_C_PORT=8000
+      - SERVER_C_TIMEOUT=5
 
   server-a:
     build:
