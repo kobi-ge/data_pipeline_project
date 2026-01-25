@@ -1,6 +1,7 @@
 import mysql.connector
 from mysql.connector.abstracts import MySQLConnectionAbstract, MySQLCursorAbstract
 import os 
+import time
 
 DATABASE_HOST = os.getenv("DATABASE_HOST","127.0.0.1")
 DATABASE_USER = os.getenv("DATABASE_USER","root")
@@ -12,16 +13,32 @@ TABLE_NAME = os.getenv('TABLE_NAME','records_table')
 
 class MySQLManager():
     def __init__(self,host:str,user:str,password:str,port:int):
-
-        self.pool = mysql.connector.pooling.MySQLConnectionPool(
-            pool_name='mypool',
-            pool_size=5,
-            host=host,
-            user=user,
-            password=password,
-            port=port
+        self.host = host
+        self.user = user
+        self.password = password
+        self.port = port
+        self.pool = None 
+        
+    def initialize_pool(self):
+        retries = 5 
+        for i in range(retries):
+            try:
+                self.pool = mysql.connector.pooling.MySQLConnectionPool(
+            pool_name = 'my-pool',
+            pool_size = 5,
+            host = self.host,
+            user = self.user,
+            password = self.password,
+            port = self.port
         )
+            except mysql.connector.Error as err:
+                print(f'connection failed {err}. retry again {i}')
+                time.sleep(3)
+        raise Exception("connection failed after all retries")
+
     def get_db(self):
+        if not self.pool:
+            raise Exception("Database pool not initialized. Call initialize_pool() first.")
         connection = self.pool.get_connection()
         try:
             yield connection
@@ -37,12 +54,9 @@ class MySQLManager():
             cursor.close()
         finally:
             cursor.close()
+            conn.close()
     def init_schema(self):
-        
-        
-        
         conn : MySQLConnectionAbstract = self.pool.get_connection()
-        
         try:
             cursor : MySQLCursorAbstract = conn.cursor()
             cursor.execute(f"USE {DATABASE_NAME}")
@@ -66,6 +80,7 @@ class MySQLManager():
             cursor.close()
             
         finally:
+            cursor.close()
             conn.close()
                 
 
