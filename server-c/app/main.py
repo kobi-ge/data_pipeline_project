@@ -15,9 +15,10 @@ def startup_event():
         db_manager.initialize_pool()
         db_manager.init_database()
         db_manager.init_schema()
+        print("Database connected!. all work!")
+
     except Exception as e:
         print(f'error from init table {e}')
-    print("Database connected!")
 
 
 app.include_router(crud_router)
