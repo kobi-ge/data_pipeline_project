@@ -1,0 +1,26 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata: 
+  name: server-b-deploy 
+sepc:
+  selector:
+    matchLables:
+      app: server-b-api
+  template:
+    metadata:
+      labels:
+        app: server-b-api 
+    sepc:
+      containers:
+       - name: server-b-con
+         image: moshe5434/data_pipeline/server-b:v1 
+         ports:
+           containerPort: 8000 
+         env:
+          SERVER_C_NAME: "server-c" 
+          SERVER_C_PORT: "8000"
+          SERVER_C_TIMEOUT: "5"
+       - name: wait-for-server-c
+         image: busybox:1.28
+         command: ['sh', '-c', "until nc -zv service-c 8000; do echo waiting for server-c...; sleep 2; done"]
+
