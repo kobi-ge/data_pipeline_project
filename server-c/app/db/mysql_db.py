@@ -31,6 +31,7 @@ class MySQLManager():
             password = self.password,
             port = self.port
         )
+                return
             except mysql.connector.Error as err:
                 print(f'connection failed {err}. retry again {i}')
                 time.sleep(3)
