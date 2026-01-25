@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: mysql-con
-        image: registry.k8s.io/mysql:8.0
+        image: mysql:8.0
         ports:
         - containerPort: 3306
           name: mysql-con 

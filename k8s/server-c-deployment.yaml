@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: server-c-deploy
-sepc:
+spec:
   selector:
     matchLabels:
      app: server-c-api
@@ -10,22 +10,28 @@ sepc:
     metadata:
       labels:
         app: server-c-api 
-    sepc:
+    spec:
       containers:
         - name: server-c-con
-          image: moshe5434/data_pipeline/server-c:v1
+          image: moshe5434/pipeline-project-server-c:v1
           ports:
-            - port: 8000
-              targetPort: 8000
+          - containerPort: 8000
           env:
-            TABLE_NAME: "records_table"
-            DATABASE_NAME: "db_weather"
-            DATABASE_HOST: "mysql-service"
-            DATABASE_USER: "root"
-            DATABASE_PASSWORD: "my-pw"
-            DATABASE_PORT: "3306"
-        - name: wait-for-mysql
-          image: busybox:1.28
-          command: ['sh', '-c', "until nc -zv mysql-service 3306; do echo waiting for mysql-service...; sleep 2; done"]
+            - name: TABLE_NAME
+              value: "records_table"
+            - name: DATABASE_NAME
+              value: "db_weather"
+            - name: DATABASE_HOST
+              value: "mysql-service"
+            - name: DATABASE_USER
+              value: "root"
+            - name: DATABASE_PASSWORD
+              value: "my-pw"
+            - name: DATABASE_PORT
+              value: "3306"
+      initContainers:
+      - name: wait-for-mysql
+        image: busybox:1.28
+        command: ['sh', '-c', "until nc -zv mysql-service 3306; do echo waiting for mysql-service...; sleep 2; done"]
 
     

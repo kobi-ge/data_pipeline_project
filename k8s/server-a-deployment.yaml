@@ -4,7 +4,7 @@ metadata:
   name: server-a-deploy 
   labels:
     app: api 
-sepc:
+spec:
   replicas: 1
   selector:
     matchLabels:
@@ -13,20 +13,23 @@ sepc:
     metadata:
       labels:
         app: server-a-api 
-    sepc:
+    spec:
       containers:
         - name: server-a-con 
-          image: moshe5434/data_pipeline/server-a:v1 
+          image: moshe5434/pipeline-project-server-a:v1 
           ports:
             - containerPort: 8000
           env:
-            SERVER_B_NAME: "server-b"
-            SERVER_B_PORT: "8000"
-            SERVER_B_TIMEOUT: "5"
-            initContainers:
-        - name: wait-for-server-b
-          image: busybox:1.28
-          command: ['sh', '-c', "until nc -zv service-b 8000; do echo waiting for server-b...; sleep 2; done"]
+            - name: SERVER_B_NAME
+              value: "service-b"
+            - name: SERVER_B_PORT
+              value: "8000"
+            - name: SERVER_B_TIMEOUT
+              value: "5"
+      initContainers:
+      - name: wait-for-server-b
+        image: busybox:1.28
+        command: ['sh', '-c', "until nc -zv service-b 8000; do echo waiting for server-b...; sleep 2; done"]
 
     
 
