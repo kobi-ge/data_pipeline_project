@@ -4,7 +4,7 @@ metadata:
   name: server-b-deploy 
 sepc:
   selector:
-    matchLables:
+    matchLabels:
       app: server-b-api
   template:
     metadata:
