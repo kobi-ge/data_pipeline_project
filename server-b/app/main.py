@@ -1,6 +1,4 @@
-from fastapi import FastAPI, APIRouter
-import uvicorn
-
+from fastapi import FastAPI
 from .routes import router
 
 
